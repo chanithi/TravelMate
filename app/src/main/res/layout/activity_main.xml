@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="60dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_white">
 
         <TextView
             android:layout_width="261dp"
@@ -29,24 +30,24 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_blue"
-                android:layout_margin="50dp"
                 android:layout_alignParentLeft="true"
+                android:layout_margin="50dp"
+                android:background="@drawable/bg_card_blue"
                 android:text="SignUp"
                 android:textColor="@color/white" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_blue"
                 android:layout_alignParentRight="true"
                 android:layout_margin="50dp"
+                android:background="@drawable/bg_card_blue"
                 android:text="SignIn"
                 android:textColor="@color/white" />
         </RelativeLayout>

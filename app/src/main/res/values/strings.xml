@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TravelMate</string>
+    <string name="email">Enter Email</string>
+    <string name="pass">Create a password</string>
+    <string name="repass">Re enter password</string>
+    <string name="loginpass">Enter password</string>
+    <string name="name">Enter Name</string>
+    <string name="nic">Enter NIC Number</string>
+    <string name="contactNo">Enter Contact Number</string>
 </resources>
