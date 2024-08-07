@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HotelsPage">
+
+    <TextView
+        android:id="@+id/topicDpg"
+        android:layout_width="197dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="50dp"
+        android:paddingLeft="10dp"
+        android:text="Choose a good place to stay" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchD_view"
+        android:layout_width="372dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topicDpg"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:queryHint="Search for district..." />
+
+    <ImageView
+        android:id="@+id/imgD1"
+        android:layout_width="133dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/searchD_view"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="48dp"
+        android:src="@drawable/hotel" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgD1"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="20dp"
+        android:text="hotel1" />
+
+    <ImageView
+        android:id="@+id/imgD2"
+        android:layout_width="121dp"
+        android:layout_height="108dp"
+        android:layout_below="@id/searchD_view"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="61dp"
+        android:src="@drawable/hotel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgD2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="148dp"
+        android:layout_toEndOf="@+id/textView"
+        android:text="hotel2" />
+
+</RelativeLayout>

@@ -13,7 +13,7 @@
       android:layout_width="320dp"
       android:layout_height="634dp"
       android:layout_margin="50dp"
-      android:background="@drawable/bg_card_blue"
+      android:background="@drawable/bg_card_grey_border"
       android:orientation="vertical">
 
     <TextView
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:background="@drawable/bg_card_btn"
+        android:background="@drawable/bg_card_btn_grey"
         android:text="SignUp"
         android:textColor="@color/white"
         android:layout_gravity="center" />
