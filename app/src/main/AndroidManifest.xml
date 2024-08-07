@@ -13,6 +13,30 @@
         android:theme="@style/Theme.TravelMate"
         tools:targetApi="31">
         <activity
+            android:name=".RequestForm"
+            android:exported="false" />
+        <activity
+            android:name=".UserGuideView"
+            android:exported="false" />
+        <activity
+            android:name=".UserHotelView"
+            android:exported="false" />
+        <activity
+            android:name=".UserDriverView"
+            android:exported="false" />
+        <activity
+            android:name=".GuideAcc"
+            android:exported="false" />
+        <activity
+            android:name=".HotelAcc"
+            android:exported="false" />
+        <activity
+            android:name=".DriverAcc"
+            android:exported="false" />
+        <activity
+            android:name=".UserAcc"
+            android:exported="false" />
+        <activity
             android:name=".HotelsPage"
             android:exported="false" />
         <activity
