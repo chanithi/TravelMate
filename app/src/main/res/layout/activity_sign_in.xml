@@ -26,33 +26,56 @@
             android:text="Sign In"
             android:textSize="30dp" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:text="@string/email"
-            android:textSize="15sp" />
+            android:layout_marginTop="30dp">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signIn_email"
+                android:hint="Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:padding="20dp"
-            android:text="@string/loginpass"
-            android:textSize="15sp" />
+            android:layout_marginTop="20dp">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signIn_password"
+                android:hint="Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+            android:id="@+id/signIn_prog_bar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
         <Button
+            android:id="@+id/signIn_pg_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             android:background="@drawable/bg_card_btn_grey"
             android:padding="15dp"
-            android:layout_marginTop="20dp"
             android:text="SignIn"
             android:textColor="@color/white" />
 
+        <TextView
+            android:id="@+id/askToSignUp"
+            android:text = "Create Account"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:gravity="center"
+            />
     </LinearLayout>
-
 
 </LinearLayout>
