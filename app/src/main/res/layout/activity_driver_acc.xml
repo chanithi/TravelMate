@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="96dp"
         android:layout_height="48dp"
-        android:layout_above="@+id/imageView"
+        android:layout_above="@+id/provider_acc_icon"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="140dp"
@@ -22,7 +22,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/provider_acc_icon"
         android:layout_width="148dp"
         android:layout_height="145dp"
         android:layout_alignParentEnd="true"
@@ -32,16 +32,19 @@
         android:layout_marginBottom="483dp"
         android:src="@drawable/acc" />
 
-    <TextView
-        android:layout_width="335dp"
-        android:layout_height="38dp"
+    <Button
+        android:layout_width="127dp"
+        android:layout_height="31dp"
+        android:layout_above="@+id/provider_acc_name"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="407dp"
-        android:text="Service ID" />
+        android:layout_marginEnd="155dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/bg_card_btn_orange"
+        android:text="Edit Profile"
+        android:textColor="@color/grey" />
 
     <TextView
+        android:id="@+id/provider_acc_name"
         android:layout_width="335dp"
         android:layout_height="38dp"
         android:layout_alignParentEnd="true"
@@ -51,22 +54,45 @@
         android:text="Name" />
 
     <TextView
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="263dp"
-        android:text="Email" />
-
-    <TextView
+        android:id="@+id/provider_acc_contact"
         android:layout_width="326dp"
         android:layout_height="39dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="296dp"
         android:text="ContactNo" />
+
+
+    <TextView
+        android:id="@+id/provider_acc_district"
+        android:layout_width="335dp"
+        android:layout_height="38dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="249dp"
+        android:text="District" />
+
+    <TextView
+        android:id="@+id/provider_acc_email"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="191dp"
+        android:text="Email" />
+
+    <TextView
+        android:id="@+id/provider_acc_password"
+        android:layout_width="326dp"
+        android:layout_height="39dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="135dp"
+        android:text="Password" />
 
     <Button
         android:layout_width="131dp"

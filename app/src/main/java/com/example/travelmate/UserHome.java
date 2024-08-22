@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 //import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +39,9 @@ public class UserHome extends AppCompatActivity {
     private AutoCompleteTextView searchBar;
     FirebaseAuth auth;
     FirebaseUser user;
+    FirebaseFirestore db;
     Button button;
+    ImageView accountIcon;
 
 
     @Override
@@ -48,8 +51,17 @@ public class UserHome extends AppCompatActivity {
         setContentView(R.layout.activity_user_home);
 
         auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         button = findViewById(R.id.signOut_btn);
+        accountIcon = findViewById(R.id.user_home_acc_icon);
         user = auth.getCurrentUser();
+
+        accountIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToAccount();
+            }
+        });
 
         if(user == null){
             Intent intent = new Intent(getApplicationContext(), SignIn.class);
@@ -106,6 +118,13 @@ public class UserHome extends AppCompatActivity {
                 handleSearch(s.toString());
             }
         });
+    }
+
+    private void navigateToAccount() {
+        String userId = auth.getCurrentUser().getUid();
+        Intent intent = new Intent(UserHome.this, UserAcc.class);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
     }
 
     private void handleSearch(String searchTerm) {

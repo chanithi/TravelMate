@@ -32,23 +32,29 @@
         android:layout_marginBottom="483dp"
         android:src="@drawable/acc" />
 
-    <TextView
-        android:layout_width="335dp"
-        android:layout_height="38dp"
+
+    <Button
+        android:layout_width="118dp"
+        android:layout_height="36dp"
+        android:layout_above="@+id/textView4"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="316dp"
-        android:text="Name" />
+        android:layout_marginStart="128dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="33dp"
+        android:background="@drawable/bg_card_btn_orange"
+        android:text="Edit Profile"
+        android:textColor="@color/grey" />
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="335dp"
         android:layout_height="38dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="393dp"
-        android:text="Service ID" />
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="346dp"
+        android:text="Name" />
 
     <TextView
         android:layout_width="324dp"
@@ -56,16 +62,25 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="53dp"
-        android:layout_marginBottom="238dp"
+        android:layout_marginBottom="217dp"
         android:text="Email" />
+
+    <TextView
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="279dp"
+        android:text="Password" />
 
     <TextView
         android:layout_width="326dp"
         android:layout_height="39dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="169dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="156dp"
         android:text="ContactNo" />
 
     <Button
