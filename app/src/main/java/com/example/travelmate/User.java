@@ -8,6 +8,10 @@ public class User {
     private String email;
     private String password;
 
+    public User() {
+        // Required empty constructor for Firestore to deserialize documents
+    }
+
     // Constructor that accepts all fields
     public User(String name, String contact, String district, String userType, String email, String password) {
         this.name = name;

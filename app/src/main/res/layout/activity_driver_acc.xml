@@ -33,6 +33,7 @@
         android:src="@drawable/acc" />
 
     <Button
+        android:id="@+id/btn_edit_provider_profile"
         android:layout_width="127dp"
         android:layout_height="31dp"
         android:layout_above="@+id/provider_acc_name"

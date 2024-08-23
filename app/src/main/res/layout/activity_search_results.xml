@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".SearchResults">
+
+    <!-- User Type Image -->
+    <ImageView
+        android:id="@+id/user_type_image"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        android:layout_gravity="center"
+        android:src="@drawable/driver" />
+
+    <!-- Filter by District -->
+    <AutoCompleteTextView
+        android:id="@+id/district_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Filter by District"
+        android:inputType="text" />
+
+<!--    &lt;!&ndash; RecyclerView for Search Results &ndash;&gt;-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/search_results_recycler_view"-->
+<!--        android:visibility="visible"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:paddingTop="16dp" />-->
+
+    <!-- ListView for Search Results -->
+    <ListView
+        android:id="@+id/search_results_list_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="16dp" />
+</LinearLayout>

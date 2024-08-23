@@ -1,7 +1,9 @@
 package com.example.travelmate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ public class DriverAcc extends AppCompatActivity {
     private ImageView profileImageView;
     private FirebaseFirestore db;
     private String userId;
+    Button editProfileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +38,16 @@ public class DriverAcc extends AppCompatActivity {
         emailTextView = findViewById(R.id.provider_acc_email);
         passwordTextView = findViewById(R.id.provider_acc_password);
         profileImageView = findViewById(R.id.provider_acc_icon);
+        editProfileButton = findViewById(R.id.btn_edit_provider_profile);
 
         db = FirebaseFirestore.getInstance();
         userId = getIntent().getStringExtra("userId");
+
+
+        editProfileButton.setOnClickListener(view -> {
+            Intent intent = new Intent(DriverAcc.this, EditProfile.class);
+            startActivity(intent);
+        });
 
         loadData();
 
