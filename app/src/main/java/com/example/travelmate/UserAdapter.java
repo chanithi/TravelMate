@@ -250,6 +250,7 @@ public class UserAdapter extends ArrayAdapter<User> {
             intent.putExtra("userName", user.getName());
             intent.putExtra("userDistrict", user.getDistrict());
             intent.putExtra("userContact", user.getContact()); // Assuming contact number is available
+            intent.putExtra("userEmail", user.getEmail()); // Adding the email to the intent
             context.startActivity(intent);
         });
 

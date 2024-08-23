@@ -7,73 +7,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".RequestForm">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/requester_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Service Request Form"
-        android:textSize="25sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="40dp"/>
+        android:hint="Your Name"
+        android:inputType="textPersonName" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:textSize="20sp"
-        android:text="You're Looking For a..."
-        android:layout_marginBottom="20dp"/>
-
-    <Spinner
-        android:id="@+id/reqFormSpinner"
-        android:layout_width="352dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/from_date"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        android:text="Name of your service provider"
-        android:layout_marginBottom="20dp"/>
+        android:hint="From Date"
+        android:focusable="false"
+        android:inputType="none" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/to_date"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        android:text="Service ID of the service provider"
-        android:layout_marginBottom="20dp"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        android:text="Date"
-        android:layout_marginBottom="20dp"/>
+        android:hint="To Date"
+        android:focusable="false"
+        android:inputType="none" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/provider_email"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:textSize="15sp"
-        android:text="Number of dates"
-        android:layout_marginBottom="20dp"/>
+        android:hint="Provider Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/requester_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your Contact Number"
+        android:inputType="phone" />
 
     <Button
-        android:layout_width="133dp"
+        android:id="@+id/send_request_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_card_btn_orange"
-        android:text="Send Request"
-        android:textColor="@color/white" />
+        android:text="Send Request" />
+
 
 
 </LinearLayout>

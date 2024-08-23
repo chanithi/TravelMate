@@ -38,10 +38,17 @@
         android:textSize="18sp"
         android:text="Contact Number"/>
 
+    <TextView
+        android:id="@+id/user_detail_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Email"/>
+
     <Button
-        android:id="@+id/user_detail_button"
+        android:id="@+id/trip_req_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Action Button"/>
+        android:text="Request for a trip"/>
 
 </LinearLayout>
