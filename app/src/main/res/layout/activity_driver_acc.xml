@@ -107,6 +107,7 @@
         android:textColor="@color/grey" />
 
     <Button
+        android:id="@+id/btn_new_requests"
         android:layout_width="131dp"
         android:layout_height="36dp"
         android:layout_alignParentEnd="true"

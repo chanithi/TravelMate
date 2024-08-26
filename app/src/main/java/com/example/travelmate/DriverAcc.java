@@ -24,7 +24,7 @@ public class DriverAcc extends AppCompatActivity {
     private ImageView profileImageView;
     private FirebaseFirestore db;
     private String userId;
-    Button editProfileButton;
+    Button editProfileButton, newRequestsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class DriverAcc extends AppCompatActivity {
         passwordTextView = findViewById(R.id.provider_acc_password);
         profileImageView = findViewById(R.id.provider_acc_icon);
         editProfileButton = findViewById(R.id.btn_edit_provider_profile);
+        newRequestsButton = findViewById(R.id.btn_new_requests);
 
         db = FirebaseFirestore.getInstance();
         userId = getIntent().getStringExtra("userId");
@@ -46,6 +47,11 @@ public class DriverAcc extends AppCompatActivity {
 
         editProfileButton.setOnClickListener(view -> {
             Intent intent = new Intent(DriverAcc.this, EditProfile.class);
+            startActivity(intent);
+        });
+
+        newRequestsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(DriverAcc.this, ProviderNewRequests.class);
             startActivity(intent);
         });
 

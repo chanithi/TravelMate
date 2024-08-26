@@ -23,7 +23,7 @@ public class UserAcc extends AppCompatActivity {
     private ImageView profileImageView;
     private FirebaseFirestore db;
     private String userId;
-    Button editProfileButton;
+    Button editProfileButton,myBookingsButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class UserAcc extends AppCompatActivity {
         passwordTextView = findViewById(R.id.user_acc_password);
         profileImageView = findViewById(R.id.user_acc_icon);
         editProfileButton = findViewById(R.id.btn_edit_user_profile);
+        myBookingsButton = findViewById(R.id.btn_my_bookings);
 
         db = FirebaseFirestore.getInstance();
         userId = getIntent().getStringExtra("userId");
@@ -45,6 +46,11 @@ public class UserAcc extends AppCompatActivity {
 
         editProfileButton.setOnClickListener(view -> {
             Intent intent = new Intent(UserAcc.this, EditProfile.class);
+            startActivity(intent);
+        });
+
+        myBookingsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(UserAcc.this, UserBookings.class);
             startActivity(intent);
         });
 

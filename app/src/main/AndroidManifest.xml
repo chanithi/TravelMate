@@ -15,6 +15,15 @@
         android:theme="@style/Theme.TravelMate"
         tools:targetApi="31">
         <activity
+            android:name=".ProviderConfirmedBookings"
+            android:exported="false" />
+        <activity
+            android:name=".ProviderNewRequests"
+            android:exported="false" />
+        <activity
+            android:name=".UserBookings"
+            android:exported="false" />
+        <activity
             android:name=".SearchResults"
             android:exported="false" />
         <activity
@@ -45,19 +54,7 @@
             android:name=".RequestForm"
             android:exported="false" />
         <activity
-            android:name=".UserGuideView"
-            android:exported="false" />
-        <activity
-            android:name=".UserHotelView"
-            android:exported="false" />
-        <activity
             android:name=".UserDriverView"
-            android:exported="false" />
-        <activity
-            android:name=".GuideAcc"
-            android:exported="false" />
-        <activity
-            android:name=".HotelAcc"
             android:exported="false" />
         <activity
             android:name=".DriverAcc"

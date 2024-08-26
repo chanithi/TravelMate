@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Requester Name -->
+    <TextView
+        android:id="@+id/requesterNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Requester Name"
+        android:textSize="16sp"
+        />
+
+    <!-- From Date -->
+    <TextView
+        android:id="@+id/fromDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/requesterNameTextView"
+        android:text="From Date"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- To Date -->
+    <TextView
+        android:id="@+id/toDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromDateTextView"
+        android:text="To Date"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Requester Contact -->
+    <TextView
+        android:id="@+id/requesterContactTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toDateTextView"
+        android:text="Requester Contact"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+
+
+    <!-- Accept Button -->
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/requesterContactTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:text="Accept" />
+
+    <!-- Reject Button -->
+    <Button
+        android:id="@+id/rejectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/requesterContactTextView"
+        android:layout_toEndOf="@id/acceptButton"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Reject" />
+
+</RelativeLayout>
