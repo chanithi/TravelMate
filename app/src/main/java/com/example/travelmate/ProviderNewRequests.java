@@ -1075,6 +1075,711 @@
 
 //}
 
+
+//package com.example.travelmate;
+//
+//import android.content.Context;
+//import android.os.Bundle;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.ArrayAdapter;
+//import android.widget.Button;
+//import android.widget.ListView;
+//import android.widget.TextView;
+//import android.widget.Toast;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.QueryDocumentSnapshot;
+//
+//import java.util.ArrayList;
+//
+//public class ProviderNewRequests extends AppCompatActivity {
+//
+//    private ListView newRequestsListView;
+//    private ArrayList<BookingDetails> requestList = new ArrayList<>();
+//    private FirebaseFirestore db;
+//    private String providerEmail;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_provider_new_requests);
+//
+//        newRequestsListView = findViewById(R.id.newRequestsListView);
+//
+//        // Initialize Firestore and get the provider's email
+//        db = FirebaseFirestore.getInstance();
+//        providerEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//
+//        // Fetch and display new requests
+//        fetchNewRequests();
+//    }
+//
+//    private void fetchNewRequests() {
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("NewRequests")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        requestList.clear(); // Clear the list before adding new requests
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            BookingDetails booking = document.toObject(BookingDetails.class);
+//                            requestList.add(booking);
+//                        }
+//
+//                        // Set the adapter
+//                        RequestAdapter adapter = new RequestAdapter(this, requestList, providerEmail);
+//                        newRequestsListView.setAdapter(adapter);
+//
+//                    } else {
+//                        Toast.makeText(ProviderNewRequests.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void updateRequestStatus(BookingDetails booking, String status) {
+//        if (providerEmail == null || booking.getRequesterEmail() == null) {
+//            Toast.makeText(ProviderNewRequests.this, "Error: Missing email information", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        db.collection("bookingDetails")
+//                .whereEqualTo("requesterEmail", booking.getRequesterEmail())
+//                .whereEqualTo("providerEmail", providerEmail)
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        if (task.getResult().isEmpty()) {
+//                            Toast.makeText(ProviderNewRequests.this, "No matching bookings found", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                String bookingId = document.getId();
+//
+//                                // Update the status of the booking
+//                                db.collection("bookingDetails")
+//                                        .document(bookingId)
+//                                        .update("status", status)
+//                                        .addOnSuccessListener(aVoid -> {
+//                                            Toast.makeText(ProviderNewRequests.this, "Request " + status, Toast.LENGTH_SHORT).show();
+//                                            if (status.equals("Accepted")) {
+//                                                moveToConfirmedBookings(booking);
+//                                            }
+//                                            fetchNewRequests(); // Refresh the list
+//                                        })
+//                                        .addOnFailureListener(e -> {
+//                                            Log.e("UpdateRequestStatus", "Error updating request status", e);
+//                                            Toast.makeText(ProviderNewRequests.this, "Error updating request", Toast.LENGTH_SHORT).show();
+//                                        });
+//                            }
+//                        }
+//                    } else {
+//                        Log.e("UpdateRequestStatus", "Error fetching bookings", task.getException());
+//                        Toast.makeText(ProviderNewRequests.this, "Error fetching bookings: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void moveToConfirmedBookings(BookingDetails booking) {
+//        if (booking == null || booking.getRequesterEmail() == null) return;
+//
+//        // Add the booking to the ConfirmedBookings list
+//        db.collection("confirmedBookings")
+//                .document(booking.getRequesterEmail() + "_" + providerEmail) // Using a unique document ID
+//                .set(booking)
+//                .addOnSuccessListener(aVoid -> {
+//                    Toast.makeText(ProviderNewRequests.this, "Request moved to Confirmed Bookings", Toast.LENGTH_SHORT).show();
+//                })
+//                .addOnFailureListener(e -> Log.e("MoveToConfirmed", "Error moving booking to ConfirmedBookings", e));
+//    }
+//
+//    private class RequestAdapter extends ArrayAdapter<BookingDetails> {
+//        private final Context context;
+//        private final ArrayList<BookingDetails> requests;
+//        private final String providerEmail;
+//
+//        public RequestAdapter(Context context, ArrayList<BookingDetails> requests, String providerEmail) {
+//            super(context, 0, requests);
+//            this.context = context;
+//            this.requests = requests;
+//            this.providerEmail = providerEmail;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            if (convertView == null) {
+//                convertView = LayoutInflater.from(context).inflate(R.layout.item_provider_new_requests, parent, false);
+//            }
+//
+//            BookingDetails booking = getItem(position);
+//
+//            TextView requesterNameTextView = convertView.findViewById(R.id.requesterNameTextView);
+//            TextView fromDateTextView = convertView.findViewById(R.id.fromDateTextView);
+//            TextView toDateTextView = convertView.findViewById(R.id.toDateTextView);
+//            TextView requesterContactTextView = convertView.findViewById(R.id.requesterContactTextView);
+//            Button acceptButton = convertView.findViewById(R.id.acceptButton);
+//            Button rejectButton = convertView.findViewById(R.id.rejectButton);
+//
+//            if (booking != null) {
+//                requesterNameTextView.setText("Name: " + booking.getRequesterName());
+//                fromDateTextView.setText("From: " + booking.getFromDate());
+//                toDateTextView.setText("To: " + booking.getToDate());
+//                requesterContactTextView.setText("Contact: " + booking.getRequesterContact());
+//
+//                acceptButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to accepted
+//                    updateRequestStatus(booking, "Accepted");
+//                });
+//
+//                rejectButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to rejected
+//                    updateRequestStatus(booking, "Rejected");
+//                });
+//            }
+//
+//            return convertView;
+//        }
+//    }
+//}
+
+//package com.example.travelmate;
+//
+//import android.content.Context;
+//import android.os.Bundle;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.ArrayAdapter;
+//import android.widget.Button;
+//import android.widget.ListView;
+//import android.widget.TextView;
+//import android.widget.Toast;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.QueryDocumentSnapshot;
+//
+//import java.util.ArrayList;
+//
+//public class ProviderNewRequests extends AppCompatActivity {
+//
+//    private ListView newRequestsListView;
+//    private ArrayList<BookingDetails> requestList = new ArrayList<>();
+//    private FirebaseFirestore db;
+//    private String providerEmail;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_provider_new_requests);
+//
+//        newRequestsListView = findViewById(R.id.newRequestsListView);
+//
+//        // Initialize Firestore and get the provider's email
+//        db = FirebaseFirestore.getInstance();
+//        providerEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//
+//        // Fetch and display new requests
+//        fetchNewRequests();
+//    }
+//
+//    private void fetchNewRequests() {
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("NewRequests")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        requestList.clear(); // Clear the list before adding new requests
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            BookingDetails booking = document.toObject(BookingDetails.class);
+//                            requestList.add(booking);
+//                        }
+//
+//                        // Set the adapter
+//                        RequestAdapter adapter = new RequestAdapter(this, requestList, providerEmail);
+//                        newRequestsListView.setAdapter(adapter);
+//
+//                    } else {
+//                        Toast.makeText(ProviderNewRequests.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void updateRequestStatus(String requesterEmail, String status) {
+//        if (providerEmail == null || requesterEmail == null) {
+//            Toast.makeText(ProviderNewRequests.this, "Error: Missing email information", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        db.collection("bookingDetails")
+//                .whereEqualTo("requesterEmail", requesterEmail)
+//                .whereEqualTo("providerEmail", providerEmail)
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        if (task.getResult().isEmpty()) {
+//                            Toast.makeText(ProviderNewRequests.this, "No matching bookings found", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                String bookingId = document.getId();
+//
+//                                // Update the status of the booking
+//                                db.collection("bookingDetails")
+//                                        .document(bookingId)
+//                                        .update("status", status)
+//                                        .addOnSuccessListener(aVoid -> {
+//                                            Toast.makeText(ProviderNewRequests.this, "Request " + status, Toast.LENGTH_SHORT).show();
+//                                            if ("Accepted".equals(status)) {
+//                                                // Move the request to confirmed bookings
+//                                                moveToConfirmedBookings(document.toObject(BookingDetails.class));
+//                                            }
+//                                            fetchNewRequests(); // Refresh the list
+//                                        })
+//                                        .addOnFailureListener(e -> {
+//                                            Log.e("UpdateRequestStatus", "Error updating request status", e);
+//                                            Toast.makeText(ProviderNewRequests.this, "Error updating request", Toast.LENGTH_SHORT).show();
+//                                        });
+//                            }
+//                        }
+//                    } else {
+//                        Log.e("UpdateRequestStatus", "Error fetching bookings", task.getException());
+//                        Toast.makeText(ProviderNewRequests.this, "Error fetching bookings: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void moveToConfirmedBookings(BookingDetails booking) {
+//        if (booking == null || booking.getRequesterEmail() == null) return;
+//
+//        // Add the booking to the ConfirmedBookings collection
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("ConfirmedBookings")
+//                .document(booking.getRequesterEmail())
+//                .set(booking)
+//                .addOnSuccessListener(aVoid -> Log.d("MoveToConfirmed", "Booking moved to ConfirmedBookings"))
+//                .addOnFailureListener(e -> Log.e("MoveToConfirmed", "Error moving booking to ConfirmedBookings", e));
+//    }
+//
+//    private class RequestAdapter extends ArrayAdapter<BookingDetails> {
+//        private final Context context;
+//        private final ArrayList<BookingDetails> requests;
+//        private final String providerEmail;
+//
+//        public RequestAdapter(Context context, ArrayList<BookingDetails> requests, String providerEmail) {
+//            super(context, 0, requests);
+//            this.context = context;
+//            this.requests = requests;
+//            this.providerEmail = providerEmail;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            if (convertView == null) {
+//                convertView = LayoutInflater.from(context).inflate(R.layout.item_provider_new_requests, parent, false);
+//            }
+//
+//            BookingDetails booking = getItem(position);
+//
+//            TextView requesterNameTextView = convertView.findViewById(R.id.requesterNameTextView);
+//            TextView fromDateTextView = convertView.findViewById(R.id.fromDateTextView);
+//            TextView toDateTextView = convertView.findViewById(R.id.toDateTextView);
+//            TextView requesterContactTextView = convertView.findViewById(R.id.requesterContactTextView);
+//            Button acceptButton = convertView.findViewById(R.id.acceptButton);
+//            Button rejectButton = convertView.findViewById(R.id.rejectButton);
+//
+//            if (booking != null) {
+//                requesterNameTextView.setText("Name: " + booking.getRequesterName());
+//                fromDateTextView.setText("From: " + booking.getFromDate());
+//                toDateTextView.setText("To: " + booking.getToDate());
+//                requesterContactTextView.setText("Contact: " + booking.getRequesterContact());
+//
+//                acceptButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to accepted
+//                    updateRequestStatus(booking.getRequesterEmail(), "Accepted");
+//                });
+//
+//                rejectButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to rejected
+//                    updateRequestStatus(booking.getRequesterEmail(), "Rejected");
+//                });
+//            }
+//
+//            return convertView;
+//        }
+//    }
+//}
+//package com.example.travelmate;
+//
+//import android.content.Context;
+//import android.content.Intent;
+//import android.os.Bundle;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.ArrayAdapter;
+//import android.widget.Button;
+//import android.widget.ListView;
+//import android.widget.TextView;
+//import android.widget.Toast;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.QueryDocumentSnapshot;
+//
+//import java.util.ArrayList;
+//
+//public class ProviderNewRequests extends AppCompatActivity {
+//
+//    private ListView newRequestsListView;
+//    private ArrayList<BookingDetails> requestList = new ArrayList<>();
+//    private FirebaseFirestore db;
+//    private String providerEmail;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_provider_new_requests);
+//
+//        newRequestsListView = findViewById(R.id.newRequestsListView);
+//
+//        // Initialize Firestore and get the provider's email
+//        db = FirebaseFirestore.getInstance();
+//        providerEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//
+//        // Fetch and display new requests
+//        fetchNewRequests();
+//    }
+//
+//    private void fetchNewRequests() {
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("NewRequests")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        requestList.clear(); // Clear the list before adding new requests
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            BookingDetails booking = document.toObject(BookingDetails.class);
+//                            requestList.add(booking);
+//                        }
+//
+//                        // Set the adapter
+//                        RequestAdapter adapter = new RequestAdapter(this, requestList, providerEmail);
+//                        newRequestsListView.setAdapter(adapter);
+//
+//                    } else {
+//                        Toast.makeText(ProviderNewRequests.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void updateRequestStatus(String requesterEmail, String status) {
+//        if (providerEmail == null || requesterEmail == null) {
+//            Toast.makeText(ProviderNewRequests.this, "Error: Missing email information", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("NewRequests")
+//                .document(requesterEmail)
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        if (!task.getResult().exists()) {
+//                            Toast.makeText(ProviderNewRequests.this, "Request not found", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            // Remove the request from the NewRequests collection
+//                            db.collection("users")
+//                                    .document(providerEmail)
+//                                    .collection("NewRequests")
+//                                    .document(requesterEmail)
+//                                    .delete()
+//                                    .addOnSuccessListener(aVoid -> {
+//                                        Toast.makeText(ProviderNewRequests.this, "Request " + status, Toast.LENGTH_SHORT).show();
+//                                        if ("Accepted".equals(status)) {
+//                                            // Move the request to confirmed bookings
+//                                            moveToConfirmedBookings(task.getResult().toObject(BookingDetails.class));
+//                                        }
+//                                        fetchNewRequests(); // Refresh the list
+//                                    })
+//                                    .addOnFailureListener(e -> {
+//                                        Log.e("UpdateRequestStatus", "Error removing request", e);
+//                                        Toast.makeText(ProviderNewRequests.this, "Error removing request", Toast.LENGTH_SHORT).show();
+//                                    });
+//                        }
+//                    } else {
+//                        Log.e("UpdateRequestStatus", "Error fetching request", task.getException());
+//                        Toast.makeText(ProviderNewRequests.this, "Error fetching request: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void moveToConfirmedBookings(BookingDetails booking) {
+//        if (booking == null || booking.getRequesterEmail() == null) return;
+//
+//        // Add the booking to the ConfirmedBookings collection
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("ConfirmedBookings")
+//                .document(booking.getRequesterEmail())
+//                .set(booking)
+//                .addOnSuccessListener(aVoid -> {
+//                    Intent intent = new Intent(ProviderNewRequests.this, ProviderConfirmedBookings.class);
+//                    intent.putExtra("BookingDetails", booking);
+//                    startActivity(intent);
+//                })
+//                .addOnFailureListener(e -> Log.e("MoveToConfirmed", "Error moving booking to ConfirmedBookings", e));
+//    }
+//
+//    private class RequestAdapter extends ArrayAdapter<BookingDetails> {
+//        private final Context context;
+//        private final ArrayList<BookingDetails> requests;
+//        private final String providerEmail;
+//
+//        public RequestAdapter(Context context, ArrayList<BookingDetails> requests, String providerEmail) {
+//            super(context, 0, requests);
+//            this.context = context;
+//            this.requests = requests;
+//            this.providerEmail = providerEmail;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            if (convertView == null) {
+//                convertView = LayoutInflater.from(context).inflate(R.layout.item_provider_new_requests, parent, false);
+//            }
+//
+//            BookingDetails booking = getItem(position);
+//
+//            TextView requesterNameTextView = convertView.findViewById(R.id.requesterNameTextView);
+//            TextView fromDateTextView = convertView.findViewById(R.id.fromDateTextView);
+//            TextView toDateTextView = convertView.findViewById(R.id.toDateTextView);
+//            TextView requesterContactTextView = convertView.findViewById(R.id.requesterContactTextView);
+//            Button acceptButton = convertView.findViewById(R.id.acceptButton);
+//            Button rejectButton = convertView.findViewById(R.id.rejectButton);
+//
+//            if (booking != null) {
+//                requesterNameTextView.setText("Name: " + booking.getRequesterName());
+//                fromDateTextView.setText("From: " + booking.getFromDate());
+//                toDateTextView.setText("To: " + booking.getToDate());
+//                requesterContactTextView.setText("Contact: " + booking.getRequesterContact());
+//
+//                acceptButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to accepted
+//                    updateRequestStatus(booking.getRequesterEmail(), "Accepted");
+//                });
+//
+//                rejectButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to rejected
+//                    updateRequestStatus(booking.getRequesterEmail(), "Rejected");
+//                });
+//            }
+//
+//            return convertView;
+//        }
+//    }
+//}
+//package com.example.travelmate;
+//
+//import android.content.Context;
+//import android.os.Bundle;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.ArrayAdapter;
+//import android.widget.Button;
+//import android.widget.ListView;
+//import android.widget.TextView;
+//import android.widget.Toast;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import com.google.firebase.firestore.QueryDocumentSnapshot;
+//
+//import java.util.ArrayList;
+//
+//public class ProviderNewRequests extends AppCompatActivity {
+//
+//    private ListView newRequestsListView;
+//    private ArrayList<BookingDetails> requestList = new ArrayList<>();
+//    private FirebaseFirestore db;
+//    private String providerEmail;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_provider_new_requests);
+//
+//        newRequestsListView = findViewById(R.id.newRequestsListView);
+//
+//        // Initialize Firestore and get the provider's email
+//        db = FirebaseFirestore.getInstance();
+//        providerEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//
+//        // Fetch and display new requests
+//        fetchNewRequests();
+//    }
+//
+//    private void fetchNewRequests() {
+//        db.collection("users")
+//                .document(providerEmail)
+//                .collection("NewRequests")
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        requestList.clear(); // Clear the list before adding new requests
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            BookingDetails booking = document.toObject(BookingDetails.class);
+//                            requestList.add(booking);
+//                        }
+//
+//                        // Set the adapter
+//                        RequestAdapter adapter = new RequestAdapter(this, requestList, providerEmail);
+//                        newRequestsListView.setAdapter(adapter);
+//
+//                    } else {
+//                        Toast.makeText(ProviderNewRequests.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private void updateRequestStatus(String requesterEmail, String status) {
+//        if (providerEmail == null || requesterEmail == null) {
+//            Toast.makeText(ProviderNewRequests.this, "Error: Missing email information", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        db.collection("bookingDetails")
+//                .whereEqualTo("requesterEmail", requesterEmail)
+//                .whereEqualTo("providerEmail", providerEmail)
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        if (task.getResult().isEmpty()) {
+//                            Toast.makeText(ProviderNewRequests.this, "No matching bookings found", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                String bookingId = document.getId();
+//
+//                                // Update the status of the booking
+//                                db.collection("bookingDetails")
+//                                        .document(bookingId)
+//                                        .update("status", status)
+//                                        .addOnSuccessListener(aVoid -> {
+//                                            Toast.makeText(ProviderNewRequests.this, "Request " + status, Toast.LENGTH_SHORT).show();
+//                                            fetchNewRequests(); // Refresh the list
+//                                        })
+//                                        .addOnFailureListener(e -> {
+//                                            Log.e("UpdateRequestStatus", "Error updating request status", e);
+//                                            Toast.makeText(ProviderNewRequests.this, "Error updating request", Toast.LENGTH_SHORT).show();
+//                                        });
+//                            }
+//                        }
+//                    } else {
+//                        Log.e("UpdateRequestStatus", "Error fetching bookings", task.getException());
+//                        Toast.makeText(ProviderNewRequests.this, "Error fetching bookings: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//
+//    private class RequestAdapter extends ArrayAdapter<BookingDetails> {
+//        private final Context context;
+//        private final ArrayList<BookingDetails> requests;
+//        private final String providerEmail;
+//
+//        public RequestAdapter(Context context, ArrayList<BookingDetails> requests, String providerEmail) {
+//            super(context, 0, requests);
+//            this.context = context;
+//            this.requests = requests;
+//            this.providerEmail = providerEmail;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            if (convertView == null) {
+//                convertView = LayoutInflater.from(context).inflate(R.layout.item_provider_new_requests, parent, false);
+//            }
+//
+//            BookingDetails booking = getItem(position);
+//
+//            TextView requesterNameTextView = convertView.findViewById(R.id.requesterNameTextView);
+//            TextView fromDateTextView = convertView.findViewById(R.id.fromDateTextView);
+//            TextView toDateTextView = convertView.findViewById(R.id.toDateTextView);
+//            TextView requesterContactTextView = convertView.findViewById(R.id.requesterContactTextView);
+//            Button acceptButton = convertView.findViewById(R.id.acceptButton);
+//            Button rejectButton = convertView.findViewById(R.id.rejectButton);
+//
+//            if (booking != null) {
+//                requesterNameTextView.setText("Name: " + booking.getRequesterName());
+//                fromDateTextView.setText("From: " + booking.getFromDate());
+//                toDateTextView.setText("To: " + booking.getToDate());
+//                requesterContactTextView.setText("Contact: " + booking.getRequesterContact());
+//
+//                acceptButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to accepted
+//                    updateRequestStatus(booking.getRequesterEmail(), "Accepted");
+//                });
+//
+//                rejectButton.setOnClickListener(v -> {
+//                    if (booking.getRequesterEmail() == null) {
+//                        Toast.makeText(context, "Error: Requester email is missing", Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                    // Update request status to rejected
+//                    updateRequestStatus(booking.getRequesterEmail(), "Rejected");
+//                });
+//            }
+//
+//            return convertView;
+//        }
+//    }
+//}
+//correct up
 package com.example.travelmate;
 
 import android.content.Context;
@@ -1148,9 +1853,10 @@ public class ProviderNewRequests extends AppCompatActivity {
             return;
         }
 
-        db.collection("bookingDetails")
+        db.collection("users")
+                .document(providerEmail)
+                .collection("NewRequests")
                 .whereEqualTo("requesterEmail", requesterEmail)
-                .whereEqualTo("providerEmail", providerEmail)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -1159,14 +1865,21 @@ public class ProviderNewRequests extends AppCompatActivity {
                         } else {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String bookingId = document.getId();
+                                BookingDetails booking = document.toObject(BookingDetails.class);
 
                                 // Update the status of the booking
-                                db.collection("bookingDetails")
+                                db.collection("users")
+                                        .document(providerEmail)
+                                        .collection("NewRequests")
                                         .document(bookingId)
                                         .update("status", status)
                                         .addOnSuccessListener(aVoid -> {
                                             Toast.makeText(ProviderNewRequests.this, "Request " + status, Toast.LENGTH_SHORT).show();
-                                            fetchNewRequests(); // Refresh the list
+                                            if ("Accepted".equals(status)) {
+                                                moveToConfirmedBookings(bookingId, booking);
+                                            } else {
+                                                fetchNewRequests(); // Refresh the list for rejected requests
+                                            }
                                         })
                                         .addOnFailureListener(e -> {
                                             Log.e("UpdateRequestStatus", "Error updating request status", e);
@@ -1178,6 +1891,33 @@ public class ProviderNewRequests extends AppCompatActivity {
                         Log.e("UpdateRequestStatus", "Error fetching bookings", task.getException());
                         Toast.makeText(ProviderNewRequests.this, "Error fetching bookings: " + task.getException(), Toast.LENGTH_SHORT).show();
                     }
+                });
+    }
+
+    private void moveToConfirmedBookings(String bookingId, BookingDetails booking) {
+        // Update the status of the booking in the "bookingDetails" collection
+        db.collection("bookingDetails")
+                .document(bookingId)
+                .update("status", "Accepted")
+                .addOnSuccessListener(aVoid -> {
+                    // Remove the booking from "NewRequests" collection
+                    db.collection("users")
+                            .document(providerEmail)
+                            .collection("NewRequests")
+                            .document(bookingId)
+                            .delete()
+                            .addOnSuccessListener(aVoid1 -> {
+                                Log.d("ConfirmedBookings", "Booking status updated to Accepted and removed from NewRequests");
+                                fetchNewRequests(); // Refresh the list after updating the request
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e("ConfirmedBookings", "Error deleting booking from NewRequests", e);
+                                Toast.makeText(ProviderNewRequests.this, "Error deleting booking from NewRequests", Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("ConfirmedBookings", "Error updating booking status", e);
+                    Toast.makeText(ProviderNewRequests.this, "Error updating booking status", Toast.LENGTH_SHORT).show();
                 });
     }
 

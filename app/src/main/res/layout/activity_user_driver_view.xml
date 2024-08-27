@@ -51,4 +51,12 @@
         android:layout_height="wrap_content"
         android:text="Request for a trip"/>
 
+    <Button
+        android:id="@+id/confirmed_bookings_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmed Bookings"
+        android:layout_marginTop="16dp"
+        />
+
 </LinearLayout>

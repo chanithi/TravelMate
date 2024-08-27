@@ -141,6 +141,59 @@
 //        }
 //    }
 //}
+//package com.example.travelmate;
+//
+//import android.content.Intent;
+//import android.os.Bundle;
+//import android.widget.Button;
+//import android.widget.ImageView;
+//import android.widget.TextView;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//
+//public class UserDriverView extends AppCompatActivity {
+//
+//    private ImageView userDetailImage;
+//    private TextView userDetailName;
+//    private TextView userDetailDistrict;
+//    private TextView userDetailContact;
+//    private TextView userDetailEmail;
+//    private Button tripRequestButton;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_user_driver_view);
+//
+//        userDetailImage = findViewById(R.id.user_detail_image);
+//        userDetailName = findViewById(R.id.user_detail_name);
+//        userDetailDistrict = findViewById(R.id.user_detail_district);
+//        userDetailContact = findViewById(R.id.user_detail_contact);
+//        userDetailEmail = findViewById(R.id.user_detail_email);
+//        tripRequestButton = findViewById(R.id.trip_req_btn);
+//
+//        Intent intent = getIntent();
+//        String name = intent.getStringExtra("userName");
+//        String district = intent.getStringExtra("userDistrict");
+//        String contact = intent.getStringExtra("userContact");
+//        String email = intent.getStringExtra("userEmail");
+//
+//        userDetailName.setText(name);
+//        userDetailDistrict.setText(district);
+//        userDetailContact.setText(contact);
+//        userDetailEmail.setText(email);
+//
+//        // Set default image
+//        userDetailImage.setImageResource(R.drawable.acc); // Replace with your default image resource
+//
+//        tripRequestButton.setOnClickListener(v -> {
+//            Intent requestIntent = new Intent(UserDriverView.this, RequestForm.class);
+//            requestIntent.putExtra("userName", name);
+//            requestIntent.putExtra("userEmail", email);
+//            startActivity(requestIntent);
+//        });
+//    }
+//}
 package com.example.travelmate;
 
 import android.content.Intent;
@@ -159,6 +212,7 @@ public class UserDriverView extends AppCompatActivity {
     private TextView userDetailContact;
     private TextView userDetailEmail;
     private Button tripRequestButton;
+    private Button confirmedBookingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +225,7 @@ public class UserDriverView extends AppCompatActivity {
         userDetailContact = findViewById(R.id.user_detail_contact);
         userDetailEmail = findViewById(R.id.user_detail_email);
         tripRequestButton = findViewById(R.id.trip_req_btn);
+        confirmedBookingsButton = findViewById(R.id.confirmed_bookings_btn);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("userName");
@@ -191,6 +246,11 @@ public class UserDriverView extends AppCompatActivity {
             requestIntent.putExtra("userName", name);
             requestIntent.putExtra("userEmail", email);
             startActivity(requestIntent);
+        });
+
+        confirmedBookingsButton.setOnClickListener(v -> {
+            Intent confirmedBookingsIntent = new Intent(UserDriverView.this, ProviderConfirmedBookings.class);
+            startActivity(confirmedBookingsIntent);
         });
     }
 }
