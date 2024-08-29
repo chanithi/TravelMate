@@ -188,11 +188,18 @@ public class ProviderConfirmedBookings extends AppCompatActivity {
 
                 BookingDetails booking = getItem(position);
 
+//                if (booking != null) {
+//                    requesterNameTextView.setText(booking.getRequesterName());
+//                    fromDateTextView.setText(booking.getFromDate());
+//                    toDateTextView.setText(booking.getToDate());
+//                    contactTextView.setText(booking.getRequesterContact());
+//                }
                 if (booking != null) {
-                    requesterNameTextView.setText(booking.getRequesterName());
-                    fromDateTextView.setText(booking.getFromDate());
-                    toDateTextView.setText(booking.getToDate());
-                    contactTextView.setText(booking.getRequesterContact());
+                    // Set the text with the desired format
+                    requesterNameTextView.setText("Requester Name: " + booking.getRequesterName());
+                    fromDateTextView.setText("From: " + booking.getFromDate());
+                    toDateTextView.setText("To: " + booking.getToDate());
+                    contactTextView.setText("Contact No: " + booking.getRequesterContact());
                 }
                 return convertView;
             }

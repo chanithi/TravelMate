@@ -15,6 +15,7 @@
         android:id="@+id/user_type_image"
         android:layout_width="match_parent"
         android:layout_height="282dp"
+        android:padding="40dp"
         android:layout_gravity="center"
         android:src="@drawable/driver" />
 

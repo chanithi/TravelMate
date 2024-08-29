@@ -212,7 +212,7 @@ public class UserDriverView extends AppCompatActivity {
     private TextView userDetailContact;
     private TextView userDetailEmail;
     private Button tripRequestButton;
-    private Button confirmedBookingsButton;
+//    private Button confirmedBookingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,7 +225,7 @@ public class UserDriverView extends AppCompatActivity {
         userDetailContact = findViewById(R.id.user_detail_contact);
         userDetailEmail = findViewById(R.id.user_detail_email);
         tripRequestButton = findViewById(R.id.trip_req_btn);
-        confirmedBookingsButton = findViewById(R.id.confirmed_bookings_btn);
+//        confirmedBookingsButton = findViewById(R.id.confirmed_bookings_btn);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("userName");
@@ -248,9 +248,9 @@ public class UserDriverView extends AppCompatActivity {
             startActivity(requestIntent);
         });
 
-        confirmedBookingsButton.setOnClickListener(v -> {
-            Intent confirmedBookingsIntent = new Intent(UserDriverView.this, ProviderConfirmedBookings.class);
-            startActivity(confirmedBookingsIntent);
-        });
+//        confirmedBookingsButton.setOnClickListener(v -> {
+//            Intent confirmedBookingsIntent = new Intent(UserDriverView.this, ProviderConfirmedBookings.class);
+//            startActivity(confirmedBookingsIntent);
+//        });
     }
 }

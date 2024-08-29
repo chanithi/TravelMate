@@ -13,32 +13,15 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:background="@drawable/bg_card_grey_border"
       android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
+        android:textColor="@color/orange"
         android:textSize="30sp"
         android:layout_gravity="center" />
-
-    <Button
-        android:id="@+id/upload_photo_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Upload Photo" />
-
-    <!-- Display selected image -->
-    <ImageView
-        android:id="@+id/uploaded_image_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:contentDescription="Uploaded photo preview" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -104,7 +87,8 @@
           android:id="@+id/signUp_password"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:hint="Enter Password" />
+          android:hint="Enter Password"
+          android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
@@ -120,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_card_btn_grey"
+        android:background="@drawable/bg_card_btn_orange"
         android:padding="15dp"
         android:text="Sign Up"
         android:textColor="@color/white" />
@@ -132,7 +116,25 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Already have an account? Sign in"
-        android:textColor="@color/orange" />
+        android:textColor="@color/white" />
 
   </LinearLayout>
 </LinearLayout>
+
+
+<!--<Button-->
+<!--android:id="@+id/upload_photo_btn"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_gravity="center"-->
+<!--android:layout_marginTop="10dp"-->
+<!--android:text="Upload Photo" />-->
+
+<!--    &lt;!&ndash; Display selected image &ndash;&gt;-->
+<!--<ImageView-->
+<!--android:id="@+id/uploaded_image_view"-->
+<!--android:layout_width="100dp"-->
+<!--android:layout_height="100dp"-->
+<!--android:layout_gravity="center"-->
+<!--android:layout_marginTop="10dp"-->
+<!--android:contentDescription="Uploaded photo preview" />-->

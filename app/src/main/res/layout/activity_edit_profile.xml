@@ -7,45 +7,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+
     tools:context=".EditProfile">
 
-    <EditText
-        android:id="@+id/edit_name"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/bg_card_grey_border"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edit_district"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="District" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Edit Profile"
+            android:textColor="@color/lightBlue"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/edit_contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contact" />
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:padding="20dp" />
 
-    <EditText
-        android:id="@+id/edit_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/edit_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="District"
+            android:padding="20dp" />
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save" />
+        <EditText
+            android:id="@+id/edit_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contact"
+            android:padding="20dp" />
 
-    <Button
-        android:id="@+id/btn_delete_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Profile"
-        android:textColor="@color/red" />
+        <EditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="20dp" />
+
+        <LinearLayout
+            android:layout_width="336dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_card_btn_grey"
+                android:padding="10dp"
+                android:text="Save"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_delete_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/bg_card_btn_orange"
+                android:padding="10dp"
+                android:text="Delete Profile"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

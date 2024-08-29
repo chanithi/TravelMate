@@ -13,9 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="60dp"
-        android:orientation="vertical"
-        android:background="@drawable/bg_card_grey_border">
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="261dp"
@@ -23,6 +22,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="130dp"
             android:text="Travel Mate"
+            android:layout_gravity="center"
             android:textColor="@color/orange"
             android:textSize="40sp"
             android:textStyle="italic" />
@@ -35,28 +35,29 @@
 
             <Button
                 android:id="@+id/btnSignUp"
-                android:layout_width="wrap_content"
+                android:layout_width="109dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_margin="50dp"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="50dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="88dp"
                 android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/bg_card_btn_orange"
                 android:text="SignUp"
                 android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnSignIn"
-                android:layout_width="112dp"
+                android:layout_width="119dp"
                 android:layout_height="wrap_content"
-
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-
-                android:layout_marginLeft="-9dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="90dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginRight="53dp"
+                android:layout_marginRight="52dp"
                 android:layout_marginBottom="50dp"
                 android:layout_toRightOf="@id/btnSignUp"
                 android:background="@drawable/bg_card_btn_grey"

@@ -26,10 +26,10 @@
 
         <ImageView
             android:id="@+id/user_home_acc_icon"
-            android:layout_width="64dp"
-            android:layout_height="54dp"
+            android:layout_width="74dp"
+            android:layout_height="60dp"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="120dp"
+            android:layout_marginLeft="110dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="36dp"
             android:layout_toRightOf="@id/app_logo_user_home"
@@ -49,44 +49,29 @@
         </AutoCompleteTextView>
 
 
-        <TextView
-            android:id="@+id/ad01"
-            android:layout_width="193dp"
-            android:layout_height="134dp"
-            android:layout_below="@+id/search_bar"
+        <ImageView
+            android:id="@+id/img01"
+            android:layout_width="272dp"
+            android:layout_height="206dp"
+            android:layout_below="@id/search_bar"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="87dp"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="91dp"
-            android:text="advertisements" />
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/hotel01" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="194dp"
-            android:layout_height="134dp"
-            android:layout_below="@+id/ad01"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="87dp"
-            android:layout_marginBottom="36dp"
-            android:text="advertisements" />
-
-        <Button
-            android:id="@+id/signOut_btn"
-            android:layout_width="129dp"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/img02"
+            android:layout_width="278dp"
+            android:layout_height="208dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="128dp"
-            android:layout_marginEnd="114dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/bg_card_btn_orange"
-            android:text="SignOut"
-            android:textColor="@color/white" />
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="63dp"
+            android:src="@drawable/hotel02" />
 
 
     </RelativeLayout>

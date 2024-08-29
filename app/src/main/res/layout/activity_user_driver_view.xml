@@ -9,19 +9,27 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".UserDriverView">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi! Welcome to my Profile"
+        android:textColor="@color/orange"
+        android:textSize="20dp"
+        android:padding="20dp"/>
 
     <ImageView
         android:id="@+id/user_detail_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/acc"
-    />
+        android:layout_width="302dp"
+        android:layout_height="147dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/acc" />
 
     <TextView
         android:id="@+id/user_detail_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
+        android:padding="20dp"
         android:text="Name"/>
 
     <TextView
@@ -29,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:padding="20dp"
         android:text="District"/>
 
     <TextView
@@ -36,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:padding="20dp"
         android:text="Contact Number"/>
 
     <TextView
@@ -43,20 +53,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
+        android:padding="20dp"
         android:text="Email"/>
 
     <Button
         android:id="@+id/trip_req_btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Request for a trip"/>
+        android:layout_gravity="center"
+        android:background="@drawable/bg_card_btn_orange"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:text="Request for a trip" />
 
-    <Button
-        android:id="@+id/confirmed_bookings_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirmed Bookings"
-        android:layout_marginTop="16dp"
-        />
+
 
 </LinearLayout>

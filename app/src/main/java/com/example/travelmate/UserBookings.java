@@ -219,6 +219,28 @@ public class UserBookings extends AppCompatActivity {
         fetchMyBookings();
     }
 
+//    private void fetchMyBookings() {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        String currentUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+//
+//        // Query the bookingDetails collection where requesterEmail matches the current user's email
+//        db.collection("bookingDetails")
+//                .whereEqualTo("requesterEmail", currentUserEmail)
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        bookingStatusList.clear(); // Clear the list before adding new bookings
+//                        for (QueryDocumentSnapshot document : task.getResult()) {
+//                            String status = document.getString("status"); // "pending", "accepted", "rejected"
+//                            String providerEmail = document.getString("providerEmail");
+//                            bookingStatusList.add("Your request to " + providerEmail + " is " + status);
+//                        }
+//                        adapter.notifyDataSetChanged();
+//                    } else {
+//                        Toast.makeText(UserBookings.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
     private void fetchMyBookings() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String currentUserEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
@@ -233,9 +255,22 @@ public class UserBookings extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String status = document.getString("status"); // "pending", "accepted", "rejected"
                             String providerEmail = document.getString("providerEmail");
-                            bookingStatusList.add("Your request to " + providerEmail + " is " + status);
+
+                            // Fetch the provider's name from the users collection
+                            db.collection("users")
+                                    .whereEqualTo("email", providerEmail)
+                                    .get()
+                                    .addOnCompleteListener(userTask -> {
+                                        if (userTask.isSuccessful() && !userTask.getResult().isEmpty()) {
+                                            // Assuming the email is unique, fetch the first document's name
+                                            String providerName = userTask.getResult().getDocuments().get(0).getString("name");
+                                            bookingStatusList.add("Your request to " + providerName + " is " + status + ". Contact for further info.");
+                                        } else {
+                                            bookingStatusList.add("Your request to " + providerEmail + " is " + status + ". Contact for further info.");
+                                        }
+                                        adapter.notifyDataSetChanged();
+                                    });
                         }
-                        adapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(UserBookings.this, "Error getting documents: " + task.getException(), Toast.LENGTH_SHORT).show();
                     }

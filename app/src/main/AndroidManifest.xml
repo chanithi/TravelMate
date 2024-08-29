@@ -33,24 +33,6 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".NewRequestsHotel"
-            android:exported="false" />
-        <activity
-            android:name=".NewRequestsGuide"
-            android:exported="false" />
-        <activity
-            android:name=".NewRequestsDriver"
-            android:exported="false" />
-        <activity
-            android:name=".PreviousBookingsHotel"
-            android:exported="false" />
-        <activity
-            android:name=".PreviousBookingsGuide"
-            android:exported="false" />
-        <activity
-            android:name=".PreviousBookingsDriver"
-            android:exported="false" />
-        <activity
             android:name=".RequestForm"
             android:exported="false" />
         <activity
@@ -61,15 +43,6 @@
             android:exported="false" />
         <activity
             android:name=".UserAcc"
-            android:exported="false" />
-        <activity
-            android:name=".HotelsPage"
-            android:exported="false" />
-        <activity
-            android:name=".GuidesPage"
-            android:exported="false" />
-        <activity
-            android:name=".DriversPage"
             android:exported="false" />
         <activity
             android:name=".ProviderHome"

@@ -7,60 +7,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".RequestForm">
+    tools:context=".RequestForm"
+    >
 
-    <EditText
-        android:id="@+id/requester_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Your Name"
-        android:inputType="textPersonName" />
+    <LinearLayout
+        android:layout_width="342dp"
+        android:layout_height="594dp"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:background="@drawable/bg_card_grey_border"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <EditText
-        android:id="@+id/requester_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Your Email"
-        android:inputType="textEmailAddress" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:text="Booking Request Form"
+            android:textColor="@color/lightBlue"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
+        <EditText
+            android:id="@+id/requester_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Name"
+            android:inputType="textPersonName"
+            android:padding="20dp" />
 
-    <EditText
-        android:id="@+id/from_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="From Date"
-        android:focusable="false"
-        android:inputType="none" />
-
-    <EditText
-        android:id="@+id/to_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="To Date"
-        android:focusable="false"
-        android:inputType="none" />
-
-    <EditText
-        android:id="@+id/provider_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Provider Email"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/requester_contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Your Contact Number"
-        android:inputType="phone" />
-
-    <Button
-        android:id="@+id/send_request_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send Request" />
+        <EditText
+            android:id="@+id/requester_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Email"
+            android:inputType="textEmailAddress"
+            android:padding="20dp" />
 
 
+        <EditText
+            android:id="@+id/from_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="From Date"
+            android:inputType="none"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/to_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:hint="To Date"
+            android:inputType="none"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/provider_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Provider Email"
+            android:inputType="textEmailAddress"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/requester_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Contact Number"
+            android:inputType="phone"
+            android:padding="20dp" />
+
+        <Button
+            android:id="@+id/send_request_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_card_btn_grey"
+            android:padding="10dp"
+            android:textColor = "@color/white"
+            android:text="Send Request" />
+
+    </LinearLayout>
 
 </LinearLayout>

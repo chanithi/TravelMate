@@ -3,18 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="bgColor7">#FFD700</color>
     <color name="darkBlue">#0B82F1</color>
-    <color name="bgColor">#A1D2E8</color>
 
-    <color name="bgColor2">#40E0D0</color>
-    <color name="bgColor3">#FF7F50</color>
-    <color name="bgColor4">#F4A460</color>
-    <color name="bgColor5">#ADD8E6</color>
-
-    <color name="orange">#FF9800</color>
-    <color name="grey">#425259</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="orange">#FF9800</color>
+    <color name = "lightBlue">#2a9df4</color>
+    <color name="grey">#425259</color>
     <color name = "red">#CC0000</color>
     <color name = "lightGreen">#669900</color>
-
-
 </resources>
