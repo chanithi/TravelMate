@@ -8,6 +8,7 @@ android:id="@+id/main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
+android:background="@drawable/bg"
 tools:context=".ProviderHome">
 
     <RelativeLayout
@@ -21,23 +22,27 @@ tools:context=".ProviderHome">
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/app_logo_user_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="141dp"
+            android:layout_height="79dp"
             android:layout_alignParentLeft="true"
-            android:layout_margin="20dp"
-            android:text="Travel Mate"
-            android:textSize="25sp" />
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/app_text" />
 
         <ImageView
             android:id="@+id/provider_home_acc_icon"
-            android:layout_width="72dp"
-            android:layout_height="68dp"
+            android:layout_width="66dp"
+            android:layout_height="71dp"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="112dp"
+            android:layout_marginLeft="83dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginRight="61dp"
             android:layout_toRightOf="@id/app_logo_user_home"
             android:src="@drawable/user_account" />
 
@@ -49,7 +54,7 @@ tools:context=".ProviderHome">
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="53dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="49dp"
             android:layout_marginEnd="46dp"
             android:src="@drawable/hotel01" />
 
@@ -60,9 +65,9 @@ tools:context=".ProviderHome">
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginBottom="89dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginEnd="41dp"
+            android:layout_marginBottom="81dp"
             android:src="@drawable/hotel02" />
 
 

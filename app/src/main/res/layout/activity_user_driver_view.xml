@@ -8,12 +8,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:background="@drawable/bg"
     tools:context=".UserDriverView">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hi! Welcome to my Profile"
         android:textColor="@color/orange"
+        android:textStyle="bold"
         android:textSize="20dp"
         android:padding="20dp"/>
 

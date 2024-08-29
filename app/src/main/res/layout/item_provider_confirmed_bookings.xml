@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Requester Name"
+        android:textStyle="bold"
         android:textColor="@color/orange"
         android:textSize="18sp"/>
 
@@ -35,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirmed"
+        android:textStyle="bold"
         android:textColor="@color/lightGreen"/>
 
 </LinearLayout>
